@@ -11,34 +11,22 @@
 }
 
 body {
-    margin: 0;
- 
+    margin: 0; 
     height: 100vh;
-    /* background-color: rgb(10, 25, 41); */
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     background: linear-gradient(135deg, pink, steelblue);
-    font-family: font-family: Chalkboard, "Comic Sans MS", "Comic Sans";
+    font-family: Chalkboard, "Comic Sans MS", "Comic Sans";
     font-size: 18px;
     color: black;
 }
 
 main {
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
-
     width: 100%;
-    min-height: 400px;
+    height: 100vh;
 
     font-size: 2rem;
-    
     background-color: lavender;
-    border: 5px solid black;
 }
 
 .buttons {
@@ -127,10 +115,19 @@ button:active {
 }
 
 @media (min-width: 768px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
     main {
         width: 768px;
         height: auto;
         min-height: 400px;
+        border: 5px solid black;
+        border-radius: 8px;
     }
 }
 </style>
