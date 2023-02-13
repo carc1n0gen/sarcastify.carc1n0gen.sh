@@ -6,33 +6,79 @@
 * {
     box-sizing: border-box;
     font-size: inherit;
+    font-family: inherit;
+    color: inherit;
 }
 
 body {
     margin: 0;
  
     height: 100vh;
-    background-color: rgb(10, 25, 41);
+    /* background-color: rgb(10, 25, 41); */
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
+    /* font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif; */
+    font-family: 'Comic Sans MS', 'Comic Sans';
     font-size: 18px;
-    color: rgb(255 255 255 / 60%);
+    color: black;
 }
 
 main {
-    padding: 2rem;
+    position: relative;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 6px;
+    border-radius: 8px;
 
     width: 100%;
-    height: 100%;
+    min-height: 400px;
 
     font-size: 2rem;
+    
+    background-color: lavender;
+    border: 5px solid black;
+}
+
+.buttons {
+    position: absolute;
+    top: -2px;
+    left: 20px;
+}
+
+.buttons-button {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 5px solid black;
+    border-radius: 50%;
+}
+
+.buttons-button-red {
+    background-color:orangered;
+}
+
+.buttons-button-yellow {
+    background-color: gold;
+}
+
+.buttons-button-green {
+    background-color:palegreen;
+}
+
+.inner {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    padding: 1rem;
+
+    background-color: white;
+    border: 5px solid black;
+    border-radius: 8px;
+
 }
 
 input {
@@ -40,12 +86,10 @@ input {
     padding: 0.5rem;
     width: 100%;
     
-    border: 1px solid rgba(255, 255, 255, 0.23);
-    border-radius: 6px;
 
     font-weight: 100;
-    background-color: transparent;
-    color: rgb(255 255 255 / 60%);
+    border: 5px solid black;
+    border-radius: 24px;
 }
 
 h1 {
@@ -54,8 +98,32 @@ h1 {
     text-align: center;
 }
 
+main {
+    position: relative;
+}
+
 #output {
     padding: 0.5rem;
+}
+
+button {
+    padding: 0.25rem 2.5rem;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    
+    background-color:aquamarine;
+    cursor: pointer;
+    border: 5px solid black;
+    border-radius: 24px;
+}
+
+button:hover {
+    background-color: #61e4b8;
+}
+
+button:active {
+    background-color: #c2fde9;
 }
 
 @media (min-width: 768px) {
@@ -67,15 +135,35 @@ h1 {
 }
 </style>
 
-<h1>Sarcasm Case</h1>
+
 <main>
-    <input id="input" placeholder="Enter some text" aria-label="Enter some text to convert to sarcasm-case">
-    <div id="output"></div>
+    <div class="buttons">
+        <div class="buttons-button buttons-button-red"></div>
+        <div class="buttons-button buttons-button-yellow"></div>
+        <div class="buttons-button buttons-button-green"></div>
+    </div>
+    <div class="inner">
+        <h1>Sarcasm Case</h1>
+        <input id="input" placeholder="Enter some text" aria-label="Enter some text to convert to sarcasm-case">
+        <div id="output"></div>
+        <button type="button"  id="copyButton" aria-label="click to copy">
+            Copy
+        </button>
+    </div>
 </main>
 
 <script>
 const inputEl = document.querySelector('#input')
 const outputEl = document.querySelector('#output')
+const copyBbuttonEl = document.querySelector('#copyButton')
+
+copyBbuttonEl.addEventListener('click', async (event) => {
+    try {
+        await navigator.clipboard.writeText(outputEl.innerText)
+    } catch (err) {
+        //
+    }
+})
 
 function sarcasmify(text) {
     let newText = ''
