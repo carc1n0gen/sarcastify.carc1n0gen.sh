@@ -1,0 +1,103 @@
+<!doctype html>
+<title>Sarcasm your text!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+* {
+    box-sizing: border-box;
+    font-size: inherit;
+}
+
+body {
+    margin: 0;
+ 
+    height: 100vh;
+    background-color: rgb(10, 25, 41);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font: 400 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: rgb(255 255 255 / 60%);
+}
+
+main {
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+
+    width: 100%;
+    height: 100%;
+
+    font-size: 2rem;
+}
+
+input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    
+    border: 1px solid rgba(255, 255, 255, 0.23);
+    border-radius: 6px;
+
+    font-weight: 100;
+    background-color: transparent;
+    color: rgb(255 255 255 / 60%);
+}
+
+h1 {
+    font-size: 4rem;
+    margin: 0 0.5rem 0.5rem;
+    text-align: center;
+}
+
+#output {
+    padding: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    main {
+        width: 768px;
+        height: auto;
+        min-height: 400px;
+    }
+}
+</style>
+
+<h1>Sarcasm Case</h1>
+<main>
+    <input id="input" placeholder="Enter some text" aria-label="Enter some text to convert to sarcasm-case">
+    <div id="output"></div>
+</main>
+
+<script>
+const inputEl = document.querySelector('#input')
+const outputEl = document.querySelector('#output')
+
+function sarcasmify(text) {
+    let newText = ''
+    let flip = true
+    for (const char of text) {
+        if (flip) {
+            newText += char.toLowerCase()
+        } else {
+            newText += char.toUpperCase()
+        }
+
+        if (/^[a-z]/i.test(char)) {
+            flip = !flip
+        }
+    }
+
+    return newText
+}
+
+function handle({target}) {
+    outputEl.innerText = sarcasmify(target.value)
+}
+
+inputEl.addEventListener('keyup', handle)
+</script>
