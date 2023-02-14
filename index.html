@@ -196,8 +196,12 @@
 
 
 <body>
+    <audio id="audio">
+        <source src="Never Gonna Give You Up Original.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
     <div class="buttons">
-        <div class="buttons-button buttons-button-red"></div>
+        <div id="closeButton" class="buttons-button buttons-button-red"></div>
         <div class="buttons-button buttons-button-yellow"></div>
         <div class="buttons-button buttons-button-green"></div>
     </div>
@@ -229,6 +233,8 @@
     const inputEl = document.querySelector('#input')
     const outputEl = document.querySelector('#output')
     const copyBbuttonEl = document.querySelector('#copyButton')
+    const audioEl = document.querySelector('#audio')
+    const closeButtonEl = document.querySelector('#closeButton')
 
     copyBbuttonEl.addEventListener('click', async (event) => {
         try {
@@ -269,4 +275,8 @@
     }
 
     document.querySelectorAll('[type=radio]').forEach((el) => el.addEventListener('click', handleRadioClick))
+
+    closeButtonEl.addEventListener('click', () => {
+        audioEl.play()
+    })
 </script>
