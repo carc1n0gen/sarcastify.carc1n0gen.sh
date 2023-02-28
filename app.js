@@ -27,7 +27,7 @@ function sarcasmify(text, startWith) {
 
 function App() {
   const audio = useRef(null)
-  const [input, setInput] = useState('Edit this text')
+  const [input, setInput] = useState('')
   const [startWith, setStartWith] = useState(localStorage.getItem('startWith') || 'lower')
 
   const output = useMemo(() => sarcasmify(input, startWith), [input, startWith])
@@ -52,7 +52,7 @@ function App() {
       <div class="buttons-button buttons-button-green"></div>
     </div>
     <main>
-      <h1>Sarcasm Case</h1>
+      <h1>Sarcastify!</h1>
       <input
         type="text"
         placeholder="Enter some text"
