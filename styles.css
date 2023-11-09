@@ -49,7 +49,7 @@ body {
     background-color: palegreen;
 }
 
-main {
+main, .alert {
     position: relative;
     height: 100%;
     padding: 10px;
@@ -149,6 +149,17 @@ button:active {
 
 hr {
     margin: 1rem 0;
+}
+
+.alert-box {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.alert {
+    margin: 1rem;
+    padding: 1rem;
 }
 
 @media (min-width: 768px) {
