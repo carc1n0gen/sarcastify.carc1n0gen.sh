@@ -56,11 +56,18 @@ function App() {
 
   const copyToClipboard = useCallback(async () => {
     const id = makeId(16)
-    await navigator.clipboard.writeText(output)
-    setToasts((currentToasts) => [...currentToasts, {id, text: "ℹ️ Text copied to clipboard"}])
-    setTimeout(() => {
-      setToasts(currentToasts => currentToasts.filter(toast => toast.id !== id))
-    }, 5000)
+    
+    try {
+      await navigator.clipboard.writeText(output)
+      setToasts((currentToasts) => [...currentToasts, {id, text: "ℹ️ Text copied to clipboard"}])
+    } catch (err) {
+      console.error("Error copying to clipboard: ", err);
+      setToasts((currentToasts) => [...currentToasts, {id, text: "🚫 There was an issue copying to clipboard"}])
+    } finally {
+      setTimeout(() => {
+        setToasts(currentToasts => currentToasts.filter(toast => toast.id !== id))
+      }, 5000)
+    }
   }, [])
 
   return html`
