@@ -68,7 +68,7 @@ function App() {
         setToasts(currentToasts => currentToasts.filter(toast => toast.id !== id))
       }, 5000)
     }
-  }, [])
+  }, [output])
 
   return html`
     <audio ref=${audio}>
